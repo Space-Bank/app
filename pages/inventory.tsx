@@ -1,20 +1,31 @@
-import { useWeb3React } from '@web3-react/core';
-import { UserRejectedRequestError } from '@web3-react/injected-connector';
-import { BigNumber, ethers } from 'ethers';
-import type { NextPage } from 'next'
-import Image from 'next/image'
-import { useState, useEffect } from 'react';
-import { bossAddress, bossAbi, tokenAbi, tokenAddress, stakingAddress, stakingAbi } from '../config';
-import { injected } from '../connectors';
-import { changeToHarmonyOneMainnet } from './mint';
-import { Stake } from '../components/Stake'
+import { useWeb3React } from "@web3-react/core";
+import { UserRejectedRequestError } from "@web3-react/injected-connector";
+import { BigNumber, ethers } from "ethers";
+import type { NextPage } from "next";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import {
+  bossAddress,
+  bossAbi,
+  tokenAbi,
+  tokenAddress,
+  stakingAddress,
+  stakingAbi,
+} from "../config";
+import { injected } from "../connectors";
+import { changeToHarmonyOneMainnet } from "./mint";
+import { Stake } from "../components/Stake";
 
-const imageUrlBoss = "https://space-bank.s3.us-west-1.amazonaws.com/mobboss/images/$id.png";
+const imageUrlBoss =
+  "https://space-bank.s3.us-west-1.amazonaws.com/mobboss/images/$id.png";
 
 const Inventory: NextPage = () => {
   const web3 = useWeb3React();
   web3.active
-    ? console.log("You are connected to Space Bank developed by @0xNaut via", web3.account)
+    ? console.log(
+        "You are connected to Space Bank developed by @0xNaut via",
+        web3.account
+      )
     : console.log("Web3 not connected");
 
   const [totalOwned, setTotalOwned] = useState();
@@ -37,13 +48,14 @@ const Inventory: NextPage = () => {
         web3.library.getSigner(web3.account)
       );
 
-      let approval = await bossContract.approve(stakingAddress, i)
-      let a = await approval.wait()
-      let tx = await stakingContract.mobBossStake(i)
-      let t = await tx.wait()
-
-    } catch (e: any) { console.error(e) }
-  }
+      let approval = await bossContract.approve(stakingAddress, i);
+      let a = await approval.wait();
+      let tx = await stakingContract.mobBossStake(i);
+      let t = await tx.wait();
+    } catch (e: any) {
+      console.error(e);
+    }
+  };
 
   const loadInventory = async () => {
     try {
@@ -54,8 +66,7 @@ const Inventory: NextPage = () => {
       );
 
       let balanceBoss = await bossContract.balanceOf(web3.account);
-      setTotalOwnedBoss(balanceBoss.toNumber())
-
+      setTotalOwnedBoss(balanceBoss.toNumber());
 
       setTotalOwned(balanceBoss.toNumber());
 
@@ -63,11 +74,13 @@ const Inventory: NextPage = () => {
 
       let dataBoss: any = [];
       for (var i = 0; i < totalOwnedBoss; i++) {
-        await bossContract.tokenOfOwnerByIndex(web3.account, i).then((i: any) => {
-          dataBoss.push(i.toNumber());
-        });
+        await bossContract
+          .tokenOfOwnerByIndex(web3.account, i)
+          .then((i: any) => {
+            dataBoss.push(i.toNumber());
+          });
       }
-      setOwnedBossNfts(dataBoss)
+      setOwnedBossNfts(dataBoss);
 
       // let bossRewards: any = []
       // for (var i = 0; i < totalOwnedBoss; i++) {
@@ -78,16 +91,15 @@ const Inventory: NextPage = () => {
       // }
       // setClaimableRewardsBoss(bossRewards)
 
-      setLoadingNfts(false)
+      setLoadingNfts(false);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   };
 
   useEffect(() => {
     loadInventory();
   }, [loadingNfts]);
-
 
   const [connecting, setConnecting] = useState(false);
 
@@ -101,24 +113,22 @@ const Inventory: NextPage = () => {
 
   return (
     <div className="z-20 flex flex-col items-center justify-center h-full w-screen py-36">
-
       <div className="z-10 flex flex-col pl-12 sm:pl-36 md:pl-48 w-full text-left space-y-4 pb-12">
         <div className="h-0.5 bg-white w-full rounded-full" />
-        <div className='text-white flex flex-wrap space-x-20 space-y-4 justify-start items-center w-full pb-4'>
+        <div className="text-white flex flex-wrap space-x-20 space-y-4 justify-start items-center w-full pb-4">
           <p className="font-saira-b text-4xl sm:text-5xl flex text-left">
             INVENTORY
           </p>
 
           <div>
-            <p className='font-saira-sb text-2xl'>{totalOwnedBoss}</p>
-            <p className='text-lg font-saira-sb text-secondary'>MOB BOSS</p>
+            <p className="font-saira-sb text-2xl">{totalOwnedBoss}</p>
+            <p className="text-lg font-saira-sb text-secondary">MOB BOSS</p>
           </div>
         </div>
       </div>
 
-
       {/* Inventory */}
-      <div className='z-40 space-y-12'>
+      <div className="z-40 space-y-12">
         <div className="flex items-center justify-center flex-col space-y-6">
           {typeof web3.account === "string" ? (
             <>
@@ -126,7 +136,9 @@ const Inventory: NextPage = () => {
                 <></>
               ) : (
                 <>
-                  <p className="text-2xl sm:text-3xl text-white/90 text-shadow border-b border-white/10 shadow-sm">MOB BOSS</p>
+                  <p className="text-2xl sm:text-3xl text-white/90 text-shadow border-b border-white/10 shadow-sm">
+                    MOB BOSS
+                  </p>
                   <div className="flex flex-wrap items-center justify-center rounded-md shadow gap-10">
                     {ownedBossNfts?.map((i: any, idx: any) => (
                       <div
@@ -136,26 +148,33 @@ const Inventory: NextPage = () => {
                         rounded ring-1 ring-rose-100/75 shadow-sm shadow-rose-100/40
                         hover:shadow-md hover:shadow-rose-100/60"
                       >
-
                         <div className="flex justify-center flex-col items-center">
                           <span className="flex space-x-1 items-center px-1 pb-1.5">
-                            <span className='font-saira-sb text-xl mr-1.5'>MOB BOSS</span> {i}
+                            <span className="font-saira-sb text-xl mr-1.5">
+                              MOB BOSS
+                            </span>{" "}
+                            {i}
                           </span>
-                          <a href={`https://nftkey.app/collections/spacebankmobboss/token-details/?tokenId=${i}`}
+                          <a
+                            href={`https://nftkey.app/collections/spacebankmobboss/token-details/?tokenId=${i}`}
                             target="_blank"
                             rel="noreferrer"
-                            className='h-36 w-36 mb-2'>
+                            className="h-36 w-36 mb-2"
+                          >
                             <Image
                               src={imageUrlBoss.replace("$id", i)}
-                              layout="responsive" height={1} width={1}
+                              layout="responsive"
+                              height={1}
+                              width={1}
                               className="rounded"
                             />
                           </a>
-                          <button onClick={(e: any) => {
-                            e.preventDefault();
-                            stakeNft(i)
-                          }}
-                            className='w-4/5 bg-primary px-3 py-2 hover:scale-105 duration-300 transition-all ease-in-out'
+                          <button
+                            onClick={(e: any) => {
+                              e.preventDefault();
+                              stakeNft(i);
+                            }}
+                            className="w-4/5 bg-primary px-3 py-2 hover:scale-105 duration-300 transition-all ease-in-out"
                           >
                             STAKE
                           </button>
@@ -167,10 +186,12 @@ const Inventory: NextPage = () => {
                   <Stake />
 
                   {/* Generations */}
-                  <div className='items-center flex flex-col justify-center'>
-                    <div className='text-white font-saira-sb text-center text-xl'>
+                  <div className="items-center flex flex-col justify-center">
+                    <div className="text-white font-saira-sb text-center text-xl">
                       MOB BOSS
-                      <p className='border-b border-white shadow-sm'>GENERATIONS</p>
+                      <p className="border-b border-white shadow-sm">
+                        GENERATIONS
+                      </p>
                     </div>
 
                     <div className="flex flex-col space-y-12 mt-8">
@@ -178,7 +199,9 @@ const Inventory: NextPage = () => {
                         <div>
                           <div className="bg-white h-0.5 w-full pr-2 mb-1" />
                           Gen 01
-                          <p className='text-xs text-white/90 font-saira-b w-32'>MOB BOSS 1-199</p>
+                          <p className="text-xs text-white/90 font-saira-b w-32">
+                            MOB BOSS 1-199
+                          </p>
                         </div>
 
                         <div className="flex flex-col text-white">
@@ -187,10 +210,10 @@ const Inventory: NextPage = () => {
                             300% Staking Boost
                           </div>
 
-                          <div className='mt-4 w-64 list-disc space-y-2 font-saira-m'>
-                            Earn extra $GSM Rewards, as well as an in-game EXP Boost and Unique in game title!
+                          <div className="mt-4 w-64 list-disc space-y-2 font-saira-m">
+                            Earn extra $GSM Rewards, as well as an in-game EXP
+                            Boost and Unique in game title!
                           </div>
-
                         </div>
                       </div>
 
@@ -198,7 +221,9 @@ const Inventory: NextPage = () => {
                         <div>
                           <div className="bg-white h-0.5 w-full pr-2 mb-1" />
                           Gen 02
-                          <p className='text-xs text-white/90 font-saira-b w-32'>MOB BOSS 200-399</p>
+                          <p className="text-xs text-white/90 font-saira-b w-32">
+                            MOB BOSS 200-399
+                          </p>
                         </div>
 
                         <div className="flex flex-col text-white">
@@ -207,10 +232,10 @@ const Inventory: NextPage = () => {
                             100% Staking Boost
                           </div>
 
-                          <div className='mt-4 w-64 list-disc space-y-2 font-saira-m'>
-                            Earn extra $GSM Rewards, as well as an in-game EXP Boost!
+                          <div className="mt-4 w-64 list-disc space-y-2 font-saira-m">
+                            Earn extra $GSM Rewards, as well as an in-game EXP
+                            Boost!
                           </div>
-
                         </div>
                       </div>
 
@@ -218,7 +243,9 @@ const Inventory: NextPage = () => {
                         <div>
                           <div className="bg-white h-0.5 w-full pr-2 mb-1" />
                           Gen 03
-                          <p className='text-xs text-white/90 font-saira-b w-32'>MOB BOSS 400-1000</p>
+                          <p className="text-xs text-white/90 font-saira-b w-32">
+                            MOB BOSS 400-1000
+                          </p>
                         </div>
 
                         <div className="flex flex-col text-white">
@@ -227,10 +254,9 @@ const Inventory: NextPage = () => {
                             50% Staking Boost
                           </div>
 
-                          <div className='mt-4 w-64 list-disc space-y-2 font-saira-m'>
+                          <div className="mt-4 w-64 list-disc space-y-2 font-saira-m">
                             Earn extra $GSM Rewards, as well as an in-game EXP!
                           </div>
-
                         </div>
                       </div>
                     </div>
@@ -243,37 +269,44 @@ const Inventory: NextPage = () => {
               {typeof web3.account === "string" ? (
                 <>
                   {web3.chainId !== 1666600000 ? (
-                    <button onClick={changeToHarmonyOneMainnet}
-                      className='bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex py-1.5 items-center text-base sm:text-lg justify-center
-                                transition-all hover:scale-105 duration-300 ease-in-out hover:shadow-primary/60 hover:shadow-md w-48 rounded font-saira-m'>
+                    <button
+                      onClick={changeToHarmonyOneMainnet}
+                      className="bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex py-1.5 items-center text-base sm:text-lg justify-center
+                                transition-all hover:scale-105 duration-300 ease-in-out hover:shadow-primary/60 hover:shadow-md w-48 rounded font-saira-m"
+                    >
                       SWITCH NETWORK
                     </button>
                   ) : (
-                    <>
-                    </>
+                    <></>
                   )}
-                </>) :
+                </>
+              ) : (
                 <>
-                  <button onClick={() => {
-                    web3.activate(injected, undefined, true).catch((error) => {
-                      // ignore the error if it's a user rejected request
-                      if (error instanceof UserRejectedRequestError) {
-                        console.log(
-                          "Connecting Web3 to Space Bank developed by @0xNaut"
-                        )
-                      } else {
-                        console.log(web3)
-                        console.error(
-                          "Please use a Web3-enabled browser like Chrome or Brave."
-                        );
-                      }
-                    });
-                  }}
-                    className='bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex w-48 py-1.5 items-center text-2xl justify-center
-              transition-all hover:scale-105 duration-300 ease-in-out hover:shadow-primary/60 hover:shadow-md'>
+                  <button
+                    onClick={() => {
+                      web3
+                        .activate(injected, undefined, true)
+                        .catch((error) => {
+                          // ignore the error if it's a user rejected request
+                          if (error instanceof UserRejectedRequestError) {
+                            console.log(
+                              "Connecting Web3 to Space Bank developed by @0xNaut"
+                            );
+                          } else {
+                            console.log(web3);
+                            console.error(
+                              "Please use a Web3-enabled browser like Chrome or Brave."
+                            );
+                          }
+                        });
+                    }}
+                    className="bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex w-48 py-1.5 items-center text-2xl justify-center
+              transition-all hover:scale-105 duration-300 ease-in-out hover:shadow-primary/60 hover:shadow-md"
+                  >
                     CONNECT
                   </button>
-                </>}
+                </>
+              )}
             </>
           )}
         </div>
@@ -281,11 +314,10 @@ const Inventory: NextPage = () => {
 
       {/* Background */}
       <div className="z-0">
-        <Image src='/bg_02.png' layout="fill" />
+        <Image src="/bg_02.png" layout="fill" />
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Inventory
+export default Inventory;
