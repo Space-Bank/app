@@ -15,7 +15,7 @@ import { JsonFragment } from "@ethersproject/abi";
 const imageUrlBoss =
   "https://space-bank.s3.us-west-1.amazonaws.com/mobboss/images/$id.png";
 
-export const Stake = ({ web3, address }) => {
+export const Stake = ({ web3, address }: { web3: any; address: any }) => {
   const [claimableGsm, setClaimableGsm] = useState(0);
   const [gsmBalance, setGsmBalance] = useState(0);
   const [loadingNfts, setLoadingNfts] = useState(true);
@@ -84,7 +84,7 @@ export const Stake = ({ web3, address }) => {
         tokenCalls.push(multicallContract.getRewards(element));
       }
 
-      const _rewards = (await multicallProvider.all(tokenCalls)).map((e) =>
+      const _rewards = (await multicallProvider.all(tokenCalls)).map((e: any) =>
         parseFloat(parseFloat(ethers.utils.formatEther(e)).toFixed(4))
       );
       console.log(_rewards);
