@@ -13,7 +13,7 @@ import {
 import { JsonFragment } from "@ethersproject/abi";
 
 const imageUrlBoss =
-  "https://space-bank.s3.us-west-1.amazonaws.com/mobboss/images/$id.png";
+  "https://mob-bosses-images.s3.us-east-1.amazonaws.com/${id}.png";
 
 export const Stake = ({ web3, address }) => {
   const [claimableGsm, setClaimableGsm] = useState(0);
@@ -225,7 +225,7 @@ export const Stake = ({ web3, address }) => {
                         {i}
                       </span>
                       <Image
-                        src={imageUrlBoss.replace("$id", i)}
+                        src={imageUrlBoss.replace("${id}", i)}
                         layout="responsive"
                         height={1}
                         width={1}

@@ -21,7 +21,7 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const imageUrlBoss =
-  "https://space-bank.s3.us-west-1.amazonaws.com/mobboss/images/$id.png";
+  "https://mob-bosses-images.s3.us-east-1.amazonaws.com/${id}.png";
 
 const Inventory: NextPage = () => {
   const [totalOwned, setTotalOwned] = useState();
@@ -175,7 +175,7 @@ const Inventory: NextPage = () => {
                         className="h-36 w-36 mb-2"
                       >
                         <Image
-                          src={imageUrlBoss.replace("$id", i)}
+                          src={imageUrlBoss.replace("${id}", i)}
                           layout="responsive"
                           height={1}
                           width={1}
