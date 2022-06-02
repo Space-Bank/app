@@ -1,9 +1,9 @@
-export const stakingAddress = "0x39F6637677b57912dF320A1252ab25A538417614";
+export const stakingAddress = "0x1Bb3b0890aB1a3B8B6a07e475Fb38795a050382A";
 
 export const recruitAddress = "0xB9FEf2499Fa2083Ea0B3b5957AC49577E306C5F2";
-export const bossAddress = "0xEea9f969Be81cFFF70a6B68F6146E0A029F7C26E";
+export const bossAddress = "0x49c53b15255f31AD1479a4582075434fE0C18Bd0";
 
-export const tokenAddress = "0xec072Ea4Ad797a751a951a8fFDcA228812c44f0d";
+export const tokenAddress = "0x6e6e7C2cB9Ef5655ADAF13d8B5Eb101bF943d295";
 
 export const recruitAbi = [
   {
@@ -1063,55 +1063,72 @@ export const tokenAbi = [
     anonymous: false,
     inputs: [
       {
+        indexed: true,
+        internalType: "address",
         name: "owner",
-        internalType: "address",
-        indexed: true,
         type: "address",
       },
       {
+        indexed: true,
+        internalType: "address",
         name: "spender",
-        indexed: true,
         type: "address",
-        internalType: "address",
       },
       {
-        type: "uint256",
-        name: "value",
-        internalType: "uint256",
         indexed: false,
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
       },
     ],
-    type: "event",
     name: "Approval",
+    type: "event",
   },
   {
-    name: "Transfer",
-    type: "event",
     anonymous: false,
     inputs: [
       {
-        internalType: "address",
         indexed: true,
+        internalType: "address",
+        name: "previousOwner",
         type: "address",
-        name: "from",
       },
       {
         indexed: true,
-        name: "to",
-        type: "address",
         internalType: "address",
-      },
-      {
-        type: "uint256",
-        internalType: "uint256",
-        name: "value",
-        indexed: false,
+        name: "newOwner",
+        type: "address",
       },
     ],
+    name: "OwnershipTransferred",
+    type: "event",
   },
   {
-    type: "function",
-    stateMutability: "view",
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "Transfer",
+    type: "event",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -1119,8 +1136,8 @@ export const tokenAbi = [
         type: "address",
       },
       {
-        name: "spender",
         internalType: "address",
+        name: "spender",
         type: "address",
       },
     ],
@@ -1128,44 +1145,38 @@ export const tokenAbi = [
     outputs: [
       {
         internalType: "uint256",
-        type: "uint256",
         name: "",
-      },
-    ],
-  },
-  {
-    type: "function",
-    stateMutability: "nonpayable",
-    name: "approve",
-    outputs: [
-      {
-        name: "",
-        internalType: "bool",
-        type: "bool",
-      },
-    ],
-    inputs: [
-      {
-        internalType: "address",
-        type: "address",
-        name: "spender",
-      },
-      {
-        name: "amount",
         type: "uint256",
-        internalType: "uint256",
-      },
-    ],
-  },
-  {
-    outputs: [
-      {
-        type: "uint256",
-        internalType: "uint256",
-        name: "",
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "approve",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -1173,119 +1184,150 @@ export const tokenAbi = [
         type: "address",
       },
     ],
-    type: "function",
     name: "balanceOf",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [],
     name: "decimals",
-    stateMutability: "view",
     outputs: [
       {
-        type: "uint8",
-        name: "",
         internalType: "uint8",
+        name: "",
+        type: "uint8",
       },
     ],
+    stateMutability: "view",
     type: "function",
-    constant: true,
-    signature: "0x313ce567",
   },
   {
-    stateMutability: "nonpayable",
     inputs: [
       {
-        type: "address",
-        name: "spender",
         internalType: "address",
+        name: "spender",
+        type: "address",
       },
       {
-        type: "uint256",
         internalType: "uint256",
         name: "subtractedValue",
+        type: "uint256",
       },
     ],
+    name: "decreaseAllowance",
     outputs: [
       {
+        internalType: "bool",
         name: "",
         type: "bool",
-        internalType: "bool",
       },
     ],
+    stateMutability: "nonpayable",
     type: "function",
-    name: "decreaseAllowance",
   },
   {
-    name: "increaseAllowance",
-    type: "function",
     inputs: [
       {
-        name: "spender",
         internalType: "address",
+        name: "spender",
         type: "address",
       },
       {
         internalType: "uint256",
-        type: "uint256",
         name: "addedValue",
+        type: "uint256",
       },
     ],
+    name: "increaseAllowance",
     outputs: [
       {
-        type: "bool",
         internalType: "bool",
         name: "",
+        type: "bool",
       },
     ],
     stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    name: "name",
     inputs: [],
+    name: "name",
     outputs: [
       {
-        type: "string",
-        name: "",
         internalType: "string",
+        name: "",
+        type: "string",
       },
     ],
-    type: "function",
     stateMutability: "view",
-    constant: true,
-    signature: "0x06fdde03",
+    type: "function",
   },
   {
+    inputs: [],
+    name: "owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "symbol",
     outputs: [
       {
+        internalType: "string",
         name: "",
         type: "string",
-        internalType: "string",
-      },
-    ],
-    type: "function",
-    constant: true,
-    signature: "0x95d89b41",
-  },
-  {
-    type: "function",
-    outputs: [
-      {
-        type: "uint256",
-        internalType: "uint256",
-        name: "",
       },
     ],
     stateMutability: "view",
-    name: "totalSupply",
-    inputs: [],
-    constant: true,
-    signature: "0x18160ddd",
+    type: "function",
   },
   {
+    inputs: [],
+    name: "totalSupply",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
     name: "transfer",
     outputs: [
       {
@@ -1294,61 +1336,50 @@ export const tokenAbi = [
         type: "bool",
       },
     ],
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        type: "uint256",
-        internalType: "uint256",
-        name: "amount",
-      },
-    ],
     stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    name: "transferFrom",
-    type: "function",
-    stateMutability: "nonpayable",
     inputs: [
       {
-        type: "address",
-        name: "from",
         internalType: "address",
+        name: "from",
+        type: "address",
       },
       {
-        type: "address",
         internalType: "address",
         name: "to",
+        type: "address",
       },
       {
-        name: "amount",
         internalType: "uint256",
+        name: "amount",
         type: "uint256",
       },
     ],
+    name: "transferFrom",
     outputs: [
       {
+        internalType: "bool",
         name: "",
         type: "bool",
-        internalType: "bool",
       },
     ],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
     inputs: [
       {
-        type: "uint256",
-        name: "amount",
-        internalType: "uint256",
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
       },
     ],
-    type: "function",
-    stateMutability: "nonpayable",
-    name: "mint",
+    name: "transferOwnership",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
 ];
 

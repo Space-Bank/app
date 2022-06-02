@@ -112,6 +112,7 @@ export const Stake = ({ web3, address }) => {
       );
       let tx = await stakingContract.unStake([i]);
       let t = await tx.wait();
+      await loadInventory();
     } catch (e: any) {
       console.error(e);
     }
@@ -128,6 +129,7 @@ export const Stake = ({ web3, address }) => {
       );
       let tx = await stakingContract.claimRewards([i]);
       let t = await tx.wait();
+      await loadInventory();
     } catch (e: any) {
       console.error(e);
     }
@@ -143,6 +145,7 @@ export const Stake = ({ web3, address }) => {
       );
       let tx = await stakingContract.claimRewards(stakedNfts);
       let t = await tx.wait();
+      await loadInventory();
     } catch (e: any) {
       console.error(e);
     }
@@ -175,7 +178,7 @@ export const Stake = ({ web3, address }) => {
         <div className="w-full max-w-2xl flex items-center justify-between rounded-sm bg-gradient-to-tr to-white/20 from-white/40 ring-1 ring-white/40 shadow-md p-2">
           <div className="flex flex-col mr-3">
             <p className="text-white font-saira-b text-lg">REWARD</p>
-            <p>You have {claimableGsm} unclaimed $GSM</p>
+            <p>You have {claimableGsm.toFixed(4)} unclaimed $GSM</p>
           </div>
 
           <button

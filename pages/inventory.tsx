@@ -84,6 +84,7 @@ const Inventory: NextPage = () => {
       let a = await approval.wait();
       let tx = await stakingContract.stake([i]);
       let t = await tx.wait();
+      await loadInventory();
       console.log("Staked successfully");
     } catch (e: any) {
       console.error(e);
