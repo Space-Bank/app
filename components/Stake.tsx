@@ -15,7 +15,7 @@ import { JsonFragment } from "@ethersproject/abi";
 const imageUrlBoss =
   "https://mob-bosses-images.s3.us-east-1.amazonaws.com/${id}.png";
 
-export const Stake = ({ web3, address }) => {
+export const Stake = ({ web3, address, refreshInventory }) => {
   const [claimableGsm, setClaimableGsm] = useState(0);
   const [gsmBalance, setGsmBalance] = useState(0);
   const [loadingNfts, setLoadingNfts] = useState(true);
@@ -113,6 +113,7 @@ export const Stake = ({ web3, address }) => {
       let tx = await stakingContract.unStake([i]);
       let t = await tx.wait();
       await loadInventory();
+      await refreshInventory();
     } catch (e: any) {
       console.error(e);
     }
@@ -167,7 +168,7 @@ export const Stake = ({ web3, address }) => {
           <div>
             <p className="font-saira-sb text-2xl">{gsmBalance.toFixed(4)}</p>
             <p className="text-lg font-saira-sb text-primary">
-              <span className="text-white">$</span>GSM BALANCE
+              <span className="text-white">x</span>GSM BALANCE
             </p>
           </div>
         </div>
@@ -178,7 +179,7 @@ export const Stake = ({ web3, address }) => {
         <div className="w-full max-w-2xl flex items-center justify-between rounded-sm bg-gradient-to-tr to-white/20 from-white/40 ring-1 ring-white/40 shadow-md p-2">
           <div className="flex flex-col mr-3">
             <p className="text-white font-saira-b text-lg">REWARD</p>
-            <p>You have {claimableGsm.toFixed(4)} unclaimed $GSM</p>
+            <p>You have {claimableGsm.toFixed(4)} unclaimed xGSM</p>
           </div>
 
           <button
@@ -195,16 +196,16 @@ export const Stake = ({ web3, address }) => {
         <div className="flex items-center justify-center flex-col space-y-6">
           <div className="justify-center w-full  items-center mx-1.5 flex flex-col space-y-4">
             <div className="font-saira-sb p-3 bg-gradient-to-tr to-primary from-primary/80 rounded-full shadow">
-              300% GSM BONUS
+              300% xGSM BONUS
             </div>
             <div className="flex items-center w-full justify-between">
               <div className="border-b shadow-md border-white/40 text-xl font-saira-m sm:text-2xl text-white mr-12">
                 STAKED
               </div>
               <div className="text-white">
-                {20 * totalStaked}{" "}
+                {10 * totalStaked}{" "}
                 <span className="text-lg font-saira-sb text-primary">
-                  <span className="text-white">$</span>GSM
+                  <span className="text-white">x</span>GSM
                 </span>{" "}
                 PER DAY
               </div>
@@ -252,7 +253,7 @@ export const Stake = ({ web3, address }) => {
                       }}
                       className="flex py-2 px-3 bg-primary hover:scale-105 duration-300 transition-all ease-in-out"
                     >
-                      CLAIM $GSM
+                      CLAIM xGSM
                     </button>
                   </div>
                 ))}

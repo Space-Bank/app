@@ -79,11 +79,19 @@ const Inventory: NextPage = () => {
       );
 
       let bossContract = new ethers.Contract(bossAddress, bossAbi, signer);
-
-      let approval = await bossContract.approve(stakingAddress, i);
-      let a = await approval.wait();
+      const isApproved = await bossContract.isApprovedForAll(
+        address,
+        stakingAddress
+      );
+      if (!isApproved) {
+        let approval = await bossContract.setApprovalForAll(
+          stakingAddress,
+          true
+        );
+        await approval.wait();
+      }
       let tx = await stakingContract.stake([i]);
-      let t = await tx.wait();
+      await tx.wait();
       await loadInventory();
       console.log("Staked successfully");
     } catch (e: any) {
@@ -197,7 +205,11 @@ const Inventory: NextPage = () => {
                 ))}
               </div>
 
-              <Stake web3={web3} address={address} />
+              <Stake
+                web3={web3}
+                address={address}
+                refreshInventory={loadInventory}
+              />
 
               {/* Generations */}
               <div className="items-center flex flex-col justify-center">
@@ -223,7 +235,7 @@ const Inventory: NextPage = () => {
                       </div>
 
                       <div className="mt-4 w-64 list-disc space-y-2 font-saira-m">
-                        Earn extra $GSM Rewards, as well as an in-game EXP Boost
+                        Earn extra xGSM Rewards, as well as an in-game EXP Boost
                         and Unique in game title!
                       </div>
                     </div>
@@ -245,7 +257,7 @@ const Inventory: NextPage = () => {
                       </div>
 
                       <div className="mt-4 w-64 list-disc space-y-2 font-saira-m">
-                        Earn extra $GSM Rewards, as well as an in-game EXP
+                        Earn extra xGSM Rewards, as well as an in-game EXP
                         Boost!
                       </div>
                     </div>
@@ -267,7 +279,7 @@ const Inventory: NextPage = () => {
                       </div>
 
                       <div className="mt-4 w-64 list-disc space-y-2 font-saira-m">
-                        Earn extra $GSM Rewards, as well as an in-game EXP!
+                        Earn extra xGSM Rewards, as well as an in-game EXP!
                       </div>
                     </div>
                   </div>
