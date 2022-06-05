@@ -133,7 +133,7 @@ export const Stake = () => {
         <div className="h-0.5 bg-white w-full rounded-full" />
         <div className="text-white flex flex-wrap space-x-20 space-y-4 justify-start items-center w-full pb-4">
           <p className="font-saira-b text-4xl sm:text-5xl flex text-left">
-            STAKED
+            STAKED (OLD CONTRACT)
           </p>
 
           <div>
