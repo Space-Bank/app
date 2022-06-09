@@ -165,7 +165,7 @@ const Mint: NextPage = ({}): any => {
                     // ignore the error if it's a user rejected request
                     if (error instanceof UserRejectedRequestError) {
                       console.log(
-                        "Connecting Web3 to Space Bank developed by @0xNaut"
+                        "Connecting Web3 to Space Bank developed by EzTools"
                       );
                     } else {
                       console.log(web3);
