@@ -642,87 +642,181 @@ export const recruitAbi = [
 
 export const bossAbi = [
   {
-    inputs: [],
-    type: "constructor",
+    inputs: [
+      {
+        internalType: "string",
+        name: "_name",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_symbol",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_initBaseURI",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "_GSM",
+        type: "address",
+      },
+    ],
     stateMutability: "nonpayable",
+    type: "constructor",
   },
   {
     anonymous: false,
     inputs: [
       {
+        indexed: true,
         internalType: "address",
-        type: "address",
         name: "owner",
-        indexed: true,
-      },
-      {
-        indexed: true,
         type: "address",
-        name: "approved",
-        internalType: "address",
       },
       {
         indexed: true,
-        type: "uint256",
+        internalType: "address",
+        name: "approved",
+        type: "address",
+      },
+      {
+        indexed: true,
         internalType: "uint256",
         name: "tokenId",
+        type: "uint256",
       },
     ],
-    type: "event",
     name: "Approval",
+    type: "event",
   },
   {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "approved",
+        type: "bool",
+      },
+    ],
     name: "ApprovalForAll",
     type: "event",
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        name: "owner",
-        internalType: "address",
-        type: "address",
-      },
-      {
-        indexed: true,
-        type: "address",
-        name: "operator",
-        internalType: "address",
-      },
-      {
-        type: "bool",
-        indexed: false,
-        name: "approved",
-        internalType: "bool",
-      },
-    ],
   },
   {
-    type: "event",
     anonymous: false,
     inputs: [
       {
         indexed: true,
         internalType: "address",
+        name: "previousOwner",
         type: "address",
-        name: "from",
       },
       {
-        internalType: "address",
-        type: "address",
         indexed: true,
-        name: "to",
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
+    ],
+    name: "OwnershipTransferred",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "from",
+        type: "address",
       },
       {
+        indexed: true,
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        indexed: true,
         internalType: "uint256",
         name: "tokenId",
         type: "uint256",
-        indexed: true,
       },
     ],
     name: "Transfer",
+    type: "event",
   },
   {
-    stateMutability: "nonpayable",
+    inputs: [],
+    name: "MAX_SUPPLY",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    name: "MobBossesList",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "tokenID",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "level",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "generation",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "PRICE_PER_MOB_BOSS",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -731,53 +825,79 @@ export const bossAbi = [
       },
       {
         internalType: "uint256",
-        type: "uint256",
         name: "tokenId",
+        type: "uint256",
       },
     ],
-    type: "function",
     name: "approve",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+    ],
+    name: "balanceOf",
     outputs: [
       {
-        name: "",
         internalType: "uint256",
+        name: "",
         type: "uint256",
       },
     ],
-    type: "function",
-    name: "balanceOf",
     stateMutability: "view",
-    inputs: [
-      {
-        type: "address",
-        name: "owner",
-        internalType: "address",
-      },
-    ],
+    type: "function",
   },
   {
-    outputs: [
-      {
-        name: "",
-        type: "address",
-        internalType: "address",
-      },
-    ],
-    type: "function",
     inputs: [
       {
+        internalType: "uint256",
+        name: "_newPrice",
+        type: "uint256",
+      },
+    ],
+    name: "changePrice",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
         name: "tokenId",
         type: "uint256",
-        internalType: "uint256",
+      },
+    ],
+    name: "getApproved",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
       },
     ],
     stateMutability: "view",
-    name: "getApproved",
+    type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "operator",
+        type: "address",
+      },
+    ],
     name: "isApprovedForAll",
     outputs: [
       {
@@ -786,76 +906,148 @@ export const bossAbi = [
         type: "bool",
       },
     ],
-    inputs: [
-      {
-        type: "address",
-        name: "owner",
-        internalType: "address",
-      },
-      {
-        name: "operator",
-        type: "address",
-        internalType: "address",
-      },
-    ],
-    type: "function",
     stateMutability: "view",
+    type: "function",
   },
   {
-    outputs: [
-      {
-        type: "string",
-        name: "",
-        internalType: "string",
-      },
-    ],
-    type: "function",
-    name: "name",
-    stateMutability: "view",
-    inputs: [],
-    constant: true,
-    signature: "0x06fdde03",
-  },
-  {
-    stateMutability: "view",
-    outputs: [
-      {
-        type: "address",
-        internalType: "address",
-        name: "",
-      },
-    ],
-    type: "function",
-    name: "ownerOf",
     inputs: [
       {
-        name: "tokenId",
         internalType: "uint256",
+        name: "_tokenId",
         type: "uint256",
       },
     ],
-  },
-  {
+    name: "levelUp",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
-        type: "address",
-        name: "from",
-      },
-      {
-        name: "to",
-        internalType: "address",
+        name: "recipient",
         type: "address",
       },
       {
-        name: "tokenId",
         internalType: "uint256",
+        name: "amount",
         type: "uint256",
       },
     ],
+    name: "mint",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "name",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "ownerOf",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "pause",
+    outputs: [],
     stateMutability: "nonpayable",
-    name: "safeTransferFrom",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "paused",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "renounceOwnership",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "returnGeneration",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "returnLevel",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -866,9 +1058,32 @@ export const bossAbi = [
         type: "address",
       },
       {
-        type: "address",
-        name: "to",
         internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
       },
       {
         internalType: "uint256",
@@ -877,19 +1092,16 @@ export const bossAbi = [
       },
       {
         internalType: "bytes",
-        type: "bytes",
         name: "_data",
+        type: "bytes",
       },
     ],
-    outputs: [],
-    type: "function",
-    stateMutability: "nonpayable",
     name: "safeTransferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    type: "function",
-    stateMutability: "nonpayable",
-    name: "setApprovalForAll",
     inputs: [
       {
         internalType: "address",
@@ -897,77 +1109,94 @@ export const bossAbi = [
         type: "address",
       },
       {
-        type: "bool",
-        name: "approved",
         internalType: "bool",
+        name: "approved",
+        type: "bool",
       },
     ],
+    name: "setApprovalForAll",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    name: "supportsInterface",
-    type: "function",
-    stateMutability: "view",
     inputs: [
       {
-        name: "interfaceId",
+        internalType: "string",
+        name: "_newBaseExtension",
+        type: "string",
+      },
+    ],
+    name: "setBaseExtension",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "_newBaseURI",
+        type: "string",
+      },
+    ],
+    name: "setBaseURI",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "bytes4",
+        name: "interfaceId",
         type: "bytes4",
       },
     ],
+    name: "supportsInterface",
     outputs: [
       {
         internalType: "bool",
-        type: "bool",
         name: "",
+        type: "bool",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
+    inputs: [],
+    name: "symbol",
     outputs: [
       {
         internalType: "string",
-        type: "string",
         name: "",
+        type: "string",
       },
     ],
-    inputs: [],
-    name: "symbol",
-    type: "function",
     stateMutability: "view",
-    constant: true,
-    signature: "0x95d89b41",
+    type: "function",
   },
   {
     inputs: [
       {
-        type: "uint256",
-        name: "index",
         internalType: "uint256",
+        name: "index",
+        type: "uint256",
       },
     ],
-    type: "function",
     name: "tokenByIndex",
     outputs: [
       {
-        type: "uint256",
         internalType: "uint256",
         name: "",
-      },
-    ],
-    stateMutability: "view",
-  },
-  {
-    name: "tokenOfOwnerByIndex",
-    outputs: [
-      {
-        internalType: "uint256",
         type: "uint256",
-        name: "",
       },
     ],
     stateMutability: "view",
     type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -975,80 +1204,121 @@ export const bossAbi = [
         type: "address",
       },
       {
-        type: "uint256",
         internalType: "uint256",
         name: "index",
+        type: "uint256",
       },
     ],
-  },
-  {
+    name: "tokenOfOwnerByIndex",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "view",
     type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "uint256",
-        type: "uint256",
         name: "tokenId",
+        type: "uint256",
       },
     ],
     name: "tokenURI",
     outputs: [
       {
-        type: "string",
         internalType: "string",
         name: "",
+        type: "string",
       },
     ],
+    stateMutability: "view",
+    type: "function",
   },
   {
-    stateMutability: "view",
-    name: "totalSupply",
     inputs: [],
-    type: "function",
+    name: "totalSupply",
     outputs: [
       {
-        type: "uint256",
         internalType: "uint256",
         name: "",
+        type: "uint256",
       },
     ],
-    constant: true,
-    signature: "0x18160ddd",
+    stateMutability: "view",
+    type: "function",
   },
   {
     inputs: [
       {
         internalType: "address",
-        type: "address",
         name: "from",
-      },
-      {
-        name: "to",
-        internalType: "address",
         type: "address",
       },
       {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
         name: "tokenId",
         type: "uint256",
-        internalType: "uint256",
       },
     ],
-    type: "function",
-    stateMutability: "nonpayable",
-    outputs: [],
     name: "transferFrom",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    name: "mint",
-    stateMutability: "nonpayable",
     inputs: [
       {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
       },
     ],
+    name: "transferOwnership",
     outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "unpause",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_owner",
+        type: "address",
+      },
+    ],
+    name: "walletOfOwner",
+    outputs: [
+      {
+        internalType: "uint256[]",
+        name: "",
+        type: "uint256[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "withdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];
