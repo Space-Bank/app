@@ -71,7 +71,7 @@ export const Stake = () => {
     }
   };
 
-  const unstakeNft = async (i: number) => {
+  const unstakeNft = async (i: any) => {
     try {
       let stakingContract = new ethers.Contract(
         stakingAddress,
@@ -79,7 +79,7 @@ export const Stake = () => {
         web3.library.getSigner(web3.account)
       );
 
-      let tx = await stakingContract.mobBossUnstake(i);
+      let tx = await stakingContract.mobBossUnstake(parseInt(i));
       let t = await tx.wait();
     } catch (e: any) {
       console.error(e);
