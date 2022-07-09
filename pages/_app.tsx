@@ -5,6 +5,7 @@ import { Nav } from "../components/Nav";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import { Footer } from "../components/Footer";
+import "./style.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const getLibrary = (provider: any) => {

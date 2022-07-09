@@ -11,7 +11,7 @@ export const Nav = () => {
   let triedToEagerConnect = useEagerConnect();
 
   return (
-    <nav id='nav' className="backdrop-blur-sm text-white py-2 bg-black/70">
+    <nav id="nav" className="backdrop-blur-sm text-white py-2 bg-black/70">
       <header className="h-[83px] items-center w-full flex px-1.5 sm:px-3 md:px-8 xl:px-24">
         <div className="">
           <Logo />
@@ -25,17 +25,17 @@ export const Nav = () => {
 };
 
 const Logo = () => (
-  <Link href='/#home'>
+  <Link href="/#home">
     <div className="cursor-pointer">
-    <div className="lg:hidden hover:-rotate-6 transition-all duration-300 ease-in-out">
-    <Image src='/rocket.png' layout='fixed' height={60} width={58} />
-    </div>
-    <div className="hidden lg:flex">
-    <Image src='/logo.png' layout='fixed' height={60} width={243} />
-    </div>
+      <div className="lg:hidden hover:-rotate-6 transition-all duration-300 ease-in-out">
+        <Image src="/rocket.png" layout="fixed" height={60} width={58} />
+      </div>
+      <div className="hidden lg:flex">
+        <Image src="/logo.png" layout="fixed" height={60} width={243} />
+      </div>
     </div>
   </Link>
-)
+);
 
 const Tabs = () => {
   return (
@@ -44,11 +44,11 @@ const Tabs = () => {
         <Dropdown />
       </div>
       <div className="hidden nav:flex text-lg sm:text-xl space-x-1.5 md:space-x-4 lg:space-x-8 xl:space-x-16">
-        <HeaderTab text="MINT" routes={['mint']} />
-        <HeaderTab text="INVENTORY" routes={['inventory']} />
+        <HeaderTab text="MINT" routes={["mint"]} />
+        <HeaderTab text="INVENTORY" routes={["inventory"]} />
         {/* <HeaderScroll text="BUYBACK" id='buyback' /> */}
-        <HeaderScroll text="ESCROW" id='escrow' />
-        <HeaderScrollDisabled text="GAME" id='' />
+        <HeaderTab text="ESCROW" routes={["escrow"]} />
+        <HeaderScrollDisabled text="GAME" id="" />
       </div>
     </>
   );
@@ -86,10 +86,10 @@ const Dropdown = () => {
             z-0 focus:outline-none ring-2 ring-white/40"
           >
             <div className="nav:hidden gap-2 text-center items-center flex flex-col">
-              <DropdownHeaderTab text="MINT" routes={['mint']} />
-              <DropdownHeaderTab text="INVENTORY" routes={['inventory']} />
-              <DropdownHeaderScroll text="ESCROW" sectionId='team' />
-              <DropdownHeaderScrollDisabled text="GAME" sectionId='team' />
+              <DropdownHeaderTab text="MINT" routes={["mint"]} />
+              <DropdownHeaderTab text="INVENTORY" routes={["inventory"]} />
+              <DropdownHeaderScroll text="ESCROW" sectionId="team" />
+              <DropdownHeaderScrollDisabled text="GAME" sectionId="team" />
             </div>
           </Menu.Items>
         </Transition>
@@ -101,9 +101,9 @@ const Dropdown = () => {
 const HeaderTab: React.FC<HeaderTabProps> = ({ text, routes }) => {
   const router = useRouter();
   const isActive = routes?.includes(router.pathname);
-  let x
-  const _mammoth = 'mammoth'
-  text === '$MAMMOTH' ? x = _mammoth : x = text
+  let x;
+  const _mammoth = "mammoth";
+  text === "$MAMMOTH" ? (x = _mammoth) : (x = text);
   return (
     <Link href={x.toLowerCase()}>
       <div
@@ -129,12 +129,12 @@ const HeaderScroll = ({ text, id }: any) => {
   return (
     <Link href={`../#${id.toLowerCase()}`}>
       <div
-        className='hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
+        className="hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
         flex items-center rounded-md py-2 px-2.5
         bottom-0 hover:cursor-pointer transition-all
         ease-in-out duration-100 origin-center
         text-opacity-60 hover:text-opacity-100
-        space-x-1.5`'
+        space-x-1.5`"
       >
         <span>{text}</span>
       </div>
@@ -144,25 +144,25 @@ const HeaderScroll = ({ text, id }: any) => {
 
 const HeaderScrollDisabled = ({ text, id }: any) => {
   return (
-      <div
-        className='hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
+    <div
+      className="hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
         flex items-center rounded-md py-2 px-2.5
         bottom-0 hover:cursor-not-allowed transition-all
         ease-in-out duration-100 origin-center
         text-opacity-60 hover:text-opacity-100
-        space-x-1.5`'
-      >
-        <span>{text}</span>
-      </div>
+        space-x-1.5`"
+    >
+      <span>{text}</span>
+    </div>
   );
 };
 
 const DropdownHeaderTab: React.FC<HeaderTabProps> = ({ text, routes }) => {
   const router = useRouter();
   const isActive = routes?.includes(router.pathname);
-  let x
-  const _mammoth = 'mammoth'
-  text === '$MAMMOTH' ? x = _mammoth : x = text
+  let x;
+  const _mammoth = "mammoth";
+  text === "$MAMMOTH" ? (x = _mammoth) : (x = text);
   return (
     <Link href={x.toLowerCase()}>
       <div
@@ -187,10 +187,10 @@ const DropdownHeaderScroll = ({ text }: any) => {
   return (
     <Link href={`../#${text.toLowerCase()}`}>
       <div
-        className='hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
+        className="hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
         flex w-full justify-center py-1.5 hover:cursor-pointer transition-all
         ease-in-out duration-100 origin-center
-        text-opacity-60 hover:text-opacity-100 rounded-md'
+        text-opacity-60 hover:text-opacity-100 rounded-md"
       >
         <span>{text}</span>
       </div>
@@ -200,14 +200,14 @@ const DropdownHeaderScroll = ({ text }: any) => {
 
 const DropdownHeaderScrollDisabled = ({ text }: any) => {
   return (
-      <div
-        className='cursor-not-allowed hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
+    <div
+      className="cursor-not-allowed hover:bg-gray-400/10 text-white/70 hover:text-white/100 hover:shadow-inner
         flex w-full justify-center py-1.5 transition-all
         ease-in-out duration-100 origin-center
-        text-opacity-60 hover:text-opacity-100 rounded-md'
-      >
-        <span>{text}</span>
-      </div>
+        text-opacity-60 hover:text-opacity-100 rounded-md"
+    >
+      <span>{text}</span>
+    </div>
   );
 };
 
