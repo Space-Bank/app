@@ -1,12 +1,15 @@
-import { InjectedConnector } from '@web3-react/injected-connector';
+import { InjectedConnector } from "@web3-react/injected-connector";
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [53935, 1, 9001, 1666700000, 1337, 31337, 1666600000, 3, 4, 5, 42, 1337, 10, 137, 250, 43114, 42161, 288, 1313161554, 122, 56, 1285],
+  supportedChainIds: [
+    53935, 1, 9001, 1666700000, 1337, 31337, 1666600000, 3, 4, 5, 42, 1337, 10,
+    137, 250, 43114, 42161, 288, 1313161554, 122, 56, 1285,
+  ],
 });
 
 export const networks = {
   hardhat: {
-    chainId: `0x${Number(31337).toString(16)}`
+    chainId: `0x${Number(31337).toString(16)}`,
   },
   harmony: {
     chainId: `0x${Number(1666600000).toString(16)}`,
@@ -14,10 +17,31 @@ export const networks = {
     nativeCurrency: {
       name: "Harmony One",
       symbol: "ONE",
-      decimals: 18
+      decimals: 18,
     },
     rpcUrls: ["https://harmony-0-rpc.gateway.pokt.network"],
-    blockExplorerUrls: ["https://explorer.harmony.one/"]
+    blockExplorerUrls: ["https://explorer.harmony.one/"],
+  },
+  polygon: {
+    chainId: `0x${Number(137).toString(16)}`,
+    chainName: "Polygon Mainnet",
+    nativeCurrency: {
+      name: "Matic",
+      symbol: "MATIC",
+      decimals: 18,
+    },
+    rpcUrls: ["https://polygon-rpc.com"],
+    blockExplorerUrls: ["hhttps://polygonscan.com/"],
+  },
+  polyTest: {
+    chainName: "Polygon Testnet",
+    rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+    chainId: `0x${Number(80001).toString(16)}`,
+    nativeCurrency: {
+      name: "MATIC",
+      symbol: "MATIC",
+      decimals: 18,
+    },
   },
   testnet: {
     chainId: `0x${Number(1666700000).toString(16)}`,
@@ -25,9 +49,9 @@ export const networks = {
     nativeCurrency: {
       name: "Harmony One",
       symbol: "ONE",
-      decimals: 18
+      decimals: 18,
     },
     rpcUrls: ["https://api.s0.b.hmny.io"],
-    blockExplorerUrls: ["https://explorer.pops.one/"]
-  }
-}
+    blockExplorerUrls: ["https://explorer.pops.one/"],
+  },
+};

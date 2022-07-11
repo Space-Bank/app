@@ -3,19 +3,21 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Nav } from "../components/Nav";
 import { Web3ReactProvider } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
+// import { Web3Provider } from "@ethersproject/providers";
 import { Footer } from "../components/Footer";
 import "./style.css";
+import { Web3Provider } from "../contexts/Web3Context";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const getLibrary = (provider: any) => {
-    const library = new Web3Provider(provider, "any");
-    library.pollingInterval = 15000;
-    return library;
-  };
+  // const getLibrary = (provider: any) => {
+  //   const library = new Web3Provider(provider, "any");
+  //   library.pollingInterval = 15000;
+  //   return library;
+  // };
 
   return (
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <Web3Provider>
+      {/* // <Web3ReactProvider getLibrary={getLibrary}> */}
       <div className="flex flex-col w-full h-full fixed text-white/80 bg-black backdrop-blur-sm z-0 font-saira">
         <Head>
           <title>Space Bank</title>
@@ -45,7 +47,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           </footer>
         </main>
       </div>
-    </Web3ReactProvider>
+    </Web3Provider>
+    // </Web3ReactProvider>
   );
 }
 

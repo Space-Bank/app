@@ -1,7 +1,7 @@
 export const stakingAddress = "0xF24979F7c68920aC4b542BcB1914AfeD4FD51A19";
 
 export const recruitAddress = "0xB9FEf2499Fa2083Ea0B3b5957AC49577E306C5F2";
-export const bossAddress = "0x49c53b15255f31AD1479a4582075434fE0C18Bd0";
+export const bossAddress = "0x8FbA61bdE4DC137bF0A7C95bCe82aC3958E67CA2";
 
 export const tokenAddress = "0x050F6b54a102C3c2Ad8D32eBEDbb6CFC1062249f";
 
@@ -641,32 +641,7 @@ export const recruitAbi = [
 ];
 
 export const bossAbi = [
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_name",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_symbol",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_initBaseURI",
-        type: "string",
-      },
-      {
-        internalType: "address",
-        name: "_GSM",
-        type: "address",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor",
-  },
+  { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
     anonymous: false,
     inputs: [
@@ -707,12 +682,7 @@ export const bossAbi = [
         name: "operator",
         type: "address",
       },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
+      { indexed: false, internalType: "bool", name: "approved", type: "bool" },
     ],
     name: "ApprovalForAll",
     type: "event",
@@ -739,18 +709,8 @@ export const bossAbi = [
   {
     anonymous: false,
     inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
+      { indexed: true, internalType: "address", name: "from", type: "address" },
+      { indexed: true, internalType: "address", name: "to", type: "address" },
       {
         indexed: true,
         internalType: "uint256",
@@ -764,70 +724,14 @@ export const bossAbi = [
   {
     inputs: [],
     name: "MAX_SUPPLY",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    name: "MobBossesList",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "tokenID",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "level",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "generation",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "PRICE_PER_MOB_BOSS",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
     ],
     name: "approve",
     outputs: [],
@@ -835,106 +739,48 @@ export const bossAbi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-    ],
+    inputs: [{ internalType: "address", name: "", type: "address" }],
+    name: "approved",
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "owner", type: "address" }],
     name: "balanceOf",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "uint256",
-        name: "_newPrice",
-        type: "uint256",
-      },
+      { internalType: "uint256[]", name: "tokenIds", type: "uint256[]" },
+      { internalType: "address", name: "to", type: "address" },
     ],
-    name: "changePrice",
+    name: "claimToken",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
     name: "getApproved",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "address", name: "operator", type: "address" },
     ],
     name: "isApprovedForAll",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "levelUp",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "recipient",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
     name: "mint",
     outputs: [],
     stateMutability: "payable",
@@ -943,65 +789,35 @@ export const bossAbi = [
   {
     inputs: [],
     name: "name",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
+    outputs: [{ internalType: "string", name: "", type: "string" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "owner",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
     name: "ownerOf",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
+    outputs: [{ internalType: "address", name: "", type: "address" }],
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "pause",
-    outputs: [],
-    stateMutability: "nonpayable",
     type: "function",
   },
   {
     inputs: [],
     name: "paused",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "price",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
@@ -1014,59 +830,9 @@ export const bossAbi = [
   },
   {
     inputs: [
-      {
-        internalType: "uint256",
-        name: "_tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "returnGeneration",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "returnLevel",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
+      { internalType: "address", name: "from", type: "address" },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
     ],
     name: "safeTransferFrom",
     outputs: [],
@@ -1075,26 +841,10 @@ export const bossAbi = [
   },
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "_data",
-        type: "bytes",
-      },
+      { internalType: "address", name: "from", type: "address" },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
+      { internalType: "bytes", name: "data", type: "bytes" },
     ],
     name: "safeTransferFrom",
     outputs: [],
@@ -1103,16 +853,8 @@ export const bossAbi = [
   },
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
+      { internalType: "address", name: "operator", type: "address" },
+      { internalType: "bool", name: "approved", type: "bool" },
     ],
     name: "setApprovalForAll",
     outputs: [],
@@ -1121,154 +863,106 @@ export const bossAbi = [
   },
   {
     inputs: [
-      {
-        internalType: "string",
-        name: "_newBaseExtension",
-        type: "string",
-      },
+      { internalType: "address", name: "_toApprove", type: "address" },
+      { internalType: "bool", name: "_isApproved", type: "bool" },
     ],
-    name: "setBaseExtension",
+    name: "setApproved",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_newBaseURI",
-        type: "string",
-      },
-    ],
+    inputs: [{ internalType: "string", name: "_base", type: "string" }],
     name: "setBaseURI",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "bytes4",
-        name: "interfaceId",
-        type: "bytes4",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "_supply", type: "uint256" }],
+    name: "setMaxSupply",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bool", name: "_pause", type: "bool" }],
+    name: "setPause",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_amount", type: "uint256" }],
+    name: "setPrice",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_tokenId", type: "uint256" }],
+    name: "setTokenId",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "bytes4", name: "interfaceId", type: "bytes4" }],
     name: "supportsInterface",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
+    outputs: [{ internalType: "bool", name: "", type: "bool" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "symbol",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
+    outputs: [{ internalType: "string", name: "", type: "string" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "index",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "index", type: "uint256" }],
     name: "tokenByIndex",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "tokenId",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "index",
-        type: "uint256",
-      },
+      { internalType: "address", name: "owner", type: "address" },
+      { internalType: "uint256", name: "index", type: "uint256" },
     ],
     name: "tokenOfOwnerByIndex",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "tokenId", type: "uint256" }],
     name: "tokenURI",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
+    outputs: [{ internalType: "string", name: "", type: "string" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [],
     name: "totalSupply",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
     stateMutability: "view",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
+      { internalType: "address", name: "from", type: "address" },
+      { internalType: "address", name: "to", type: "address" },
+      { internalType: "uint256", name: "tokenId", type: "uint256" },
     ],
     name: "transferFrom",
     outputs: [],
@@ -1276,42 +970,10 @@ export const bossAbi = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
+    inputs: [{ internalType: "address", name: "newOwner", type: "address" }],
     name: "transferOwnership",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "unpause",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_owner",
-        type: "address",
-      },
-    ],
-    name: "walletOfOwner",
-    outputs: [
-      {
-        internalType: "uint256[]",
-        name: "",
-        type: "uint256[]",
-      },
-    ],
-    stateMutability: "view",
     type: "function",
   },
   {

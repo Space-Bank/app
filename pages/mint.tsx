@@ -1,21 +1,24 @@
 import { useWeb3React } from "@web3-react/core";
 import type { NextPage } from "next";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { bossAbi, bossAddress } from "../config";
 import { ethers } from "ethers";
 import { injected, networks } from "../connectors";
 import { UserRejectedRequestError } from "@web3-react/injected-connector";
+import Web3Context from "../contexts/Web3Context";
 
 const imageUrlBoss =
   "https://spacebank.mypinata.cloud/ipfs/QmchGvzW47SMNL7NFn4tEdN1Cjc2ymHGtx8CJk3sSDtR7s/images/$id.png";
 
 const Mint: NextPage = ({}): any => {
+  const { connectWallet, account, signer, presentNetwork } =
+    useContext(Web3Context);
   const web3 = useWeb3React();
   web3.active
     ? console.log(
-        "You are connected to Space Bank developed by @0xNaut via",
-        web3.account
+        "You are connected to Space Bank developed by @0xNaut & Acadia via",
+        account
       )
     : console.log("Web3 not connected");
 
@@ -28,7 +31,8 @@ const Mint: NextPage = ({}): any => {
       let bossContract = new ethers.Contract(
         bossAddress,
         bossAbi,
-        web3.library.getSigner(web3.account)
+        signer
+        // web3.library.getSigner(account)
       );
 
       let totalBossSupply = await bossContract.totalSupply();
@@ -48,13 +52,19 @@ const Mint: NextPage = ({}): any => {
       let contract = new ethers.Contract(
         bossAddress,
         bossAbi,
-        web3.library.getSigner(web3.account)
+        signer
+        // web3.library.getSigner(account)
       );
       console.log(contract);
 
-      let tx = await contract.mint(web3.account, 1, {
-        value: ethers.utils.parseEther("3000"),
-      });
+      let tx = await contract.mint(
+        // account,
+        1,
+        {
+          // value: ethers.utils.parseEther("3000"),
+          value: 1,
+        }
+      );
       console.log(tx);
       setTxStateBoss("PENDING...");
       let t = await tx.wait();
@@ -109,7 +119,7 @@ const Mint: NextPage = ({}): any => {
         >
           <div className="flex w-full justify-between text-black text-xl">
             <span className="font-saira-sb text-2xl">MOB BOSS</span>
-            <span>{tokensLeftBoss}/5000</span>
+            <span>{5000 - tokensLeftBoss}/5000</span>
           </div>
 
           <div className="h-[247px] bg-slate-800">
@@ -134,12 +144,12 @@ const Mint: NextPage = ({}): any => {
 
           <div className="flex w-full justify-between text-black text-base">
             <span>MINT PRICE</span>
-            <span className="font-saira-m">3000 $ONE</span>
+            <span className="font-saira-m">3000 $MATIC</span>
           </div>
 
-          {typeof web3.account === "string" ? (
+          {typeof account === "string" ? (
             <>
-              {web3.chainId !== 1666600000 ? (
+              {presentNetwork !== 80001 ? (
                 <button
                   onClick={changeToHarmonyOneMainnet}
                   className="bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex w-full py-4 items-center text-2xl justify-center
@@ -161,19 +171,20 @@ const Mint: NextPage = ({}): any => {
             <>
               <button
                 onClick={() => {
-                  web3.activate(injected, undefined, true).catch((error) => {
-                    // ignore the error if it's a user rejected request
-                    if (error instanceof UserRejectedRequestError) {
-                      console.log(
-                        "Connecting Web3 to Space Bank developed by EzTools"
-                      );
-                    } else {
-                      console.log(web3);
-                      console.error(
-                        "Please use a Web3-enabled browser like Chrome or Brave."
-                      );
-                    }
-                  });
+                  connectWallet();
+                  // web3.activate(injected, undefined, true).catch((error) => {
+                  //   // ignore the error if it's a user rejected request
+                  //   if (error instanceof UserRejectedRequestError) {
+                  //     console.log(
+                  //       "Connecting Web3 to Space Bank developed by EzTools"
+                  //     );
+                  //   } else {
+                  //     console.log(web3);
+                  //     console.error(
+                  //       "Please use a Web3-enabled browser like Chrome or Brave."
+                  //     );
+                  //   }
+                  // });
                 }}
                 className="bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex w-full py-4 items-center text-2xl justify-center
               transition-all hover:scale-105 duration-300 ease-in-out hover:shadow-primary/60 hover:shadow-md"
@@ -201,10 +212,10 @@ export const changeToHarmonyOneMainnet = async () => {
       window.ethereum
         .request({
           method: "wallet_addEthereumChain",
-          params: [{ ...networks["harmony"] }],
+          params: [{ ...networks["polyTest"] }],
         })
         .then(() => {
-          console.log("Switched to Harmony One Mainnet 👍");
+          console.log("Switched to Polygon Mainnet 👍");
         });
     }
   } catch (err: any) {

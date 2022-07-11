@@ -47,7 +47,9 @@ const Tabs = () => {
         <HeaderTab text="MINT" routes={["mint"]} />
         <HeaderTab text="INVENTORY" routes={["inventory"]} />
         {/* <HeaderScroll text="BUYBACK" id='buyback' /> */}
-        <HeaderTab text="ESCROW" routes={["escrow"]} />
+        {/* <HeaderTab text="ESCROW" routes={["escrow"]} /> */}
+        <HeaderScroll text="ESCROW" id="escrow" />
+
         <HeaderScrollDisabled text="GAME" id="" />
       </div>
     </>
