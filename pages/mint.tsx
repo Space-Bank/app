@@ -61,8 +61,8 @@ const Mint: NextPage = ({}): any => {
         // account,
         1,
         {
-          // value: ethers.utils.parseEther("3000"),
-          value: 1,
+          value: ethers.utils.parseEther("150"),
+          // value: 1,
         }
       );
       console.log(tx);
@@ -144,12 +144,12 @@ const Mint: NextPage = ({}): any => {
 
           <div className="flex w-full justify-between text-black text-base">
             <span>MINT PRICE</span>
-            <span className="font-saira-m">3000 $MATIC</span>
+            <span className="font-saira-m">150 $MATIC</span>
           </div>
 
           {typeof account === "string" ? (
             <>
-              {presentNetwork !== 80001 ? (
+              {presentNetwork !== 137 ? (
                 <button
                   onClick={changeToHarmonyOneMainnet}
                   className="bg-gradient-to-r from-[#F03A47] to-[#CE653B] flex w-full py-4 items-center text-2xl justify-center
@@ -212,7 +212,7 @@ export const changeToHarmonyOneMainnet = async () => {
       window.ethereum
         .request({
           method: "wallet_addEthereumChain",
-          params: [{ ...networks["polyTest"] }],
+          params: [{ ...networks["polygon"] }],
         })
         .then(() => {
           console.log("Switched to Polygon Mainnet 👍");

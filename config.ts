@@ -1,7 +1,7 @@
 export const stakingAddress = "0xF24979F7c68920aC4b542BcB1914AfeD4FD51A19";
 
 export const recruitAddress = "0xB9FEf2499Fa2083Ea0B3b5957AC49577E306C5F2";
-export const bossAddress = "0x8FbA61bdE4DC137bF0A7C95bCe82aC3958E67CA2";
+export const bossAddress = "0x037D27fE8469Be945aC6638Ba7B7505397970C65";
 
 export const tokenAddress = "0x050F6b54a102C3c2Ad8D32eBEDbb6CFC1062249f";
 

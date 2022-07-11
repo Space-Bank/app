@@ -31,7 +31,7 @@ export const networks = {
       decimals: 18,
     },
     rpcUrls: ["https://polygon-rpc.com"],
-    blockExplorerUrls: ["hhttps://polygonscan.com/"],
+    blockExplorerUrls: ["https://polygonscan.com/"],
   },
   polyTest: {
     chainName: "Polygon Testnet",
