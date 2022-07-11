@@ -50,7 +50,7 @@ const Tabs = () => {
         {/* <HeaderTab text="ESCROW" routes={["escrow"]} /> */}
         <HeaderScroll text="ESCROW" id="escrow" />
 
-        <HeaderScrollDisabled text="GAME" id="" />
+        <HeaderScrollDisabled text="GAMES" id="" />
       </div>
     </>
   );
