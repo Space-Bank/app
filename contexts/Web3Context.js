@@ -11,15 +11,15 @@ let toast = () => {};
 
 const Web3Context = createContext();
 
-const RPC_URL = "https://rpc-mumbai.maticvigil.com/";
-const CHAIN_ID = 80001;
+const RPC_URL = "https://polygon-rpc.com";
+const CHAIN_ID = 137;
 const NATIVE_CURRENCY = {
   name: "MATIC",
   symbol: "MATIC", // 2-6 characters long
   decimals: 18,
 };
 const MULTI_CALL_ADDRESS = "0xd078799c53396616844e2fa97f0dd2b4c145a685";
-const CHAIN_NAME = "Polygon Testnet";
+const CHAIN_NAME = "Polygon Mainnet";
 const BASE_URL = "http://localhost:5000/proposal";
 
 // const RPC_URL = "https://rpc.hermesdefi.io/";
