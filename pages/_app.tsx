@@ -7,6 +7,26 @@ import { Web3Provider as AAA } from "@ethersproject/providers";
 import { Footer } from "../components/Footer";
 import "./style.css";
 import { Web3Provider } from "../contexts/Web3Context";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { useEffect } from "react";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAWt8P59ujTfLoEIuuIfwyr4OVFxItY6Ds",
+  authDomain: "spacebank-main-website.firebaseapp.com",
+  projectId: "spacebank-main-website",
+  storageBucket: "spacebank-main-website.appspot.com",
+  messagingSenderId: "167248772020",
+  appId: "1:167248772020:web:c48bf7d0fa372ae2f890e1",
+  measurementId: "G-D28LLWQ0M6",
+};
+
+// Initialize Firebase
 
 function MyApp({ Component, pageProps }: AppProps) {
   const getLibrary = (provider: any) => {
@@ -14,6 +34,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     library.pollingInterval = 15000;
     return library;
   };
+  useEffect(() => {
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  }, []);
 
   return (
     <Web3Provider>

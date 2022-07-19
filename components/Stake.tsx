@@ -34,7 +34,7 @@ export const Stake = ({ web3, address, refreshInventory }) => {
 
     await ethcallProvider.init();
     ethcallProvider._multicallAddress =
-      "0x34b415f4d3b332515e66f70595ace1dcf36254c5";
+      "0xcA11bde05977b3631167028862bE2a173976CA11";
 
     const multicallContract = new MulticallContract(nftAddress, nftABI);
     return [ethcallProvider, multicallContract];
